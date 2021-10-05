@@ -56,20 +56,23 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Return text from chains."""
-    second_key = chains[1]
-    pprint(second_key)
-    key = choice(list(chains.key()))
-    words = [key [0],key [1]] 
     
-    # print(key)
-    # your code goes here
-    while words != None:
+    words = []
+    starter_key = choice(list(chains.keys()))
+    random_word = choice((chains[starter_key]))
+    pprint(random_word)
+    pprint(starter_key)
+    # words = [starter_key[0],starter_key[1]]
+    print(type(words))
+    print(type(starter_key))
+    
+    while random_word is not  None:
+        words.append(starter_key[0])
+        words.append(starter_key[1])
+        words.append(random_word)
+
         
-        words = words.append(key)
-        # print(words)
     return ' '.join(words)
-
-
 input_path = 'green-eggs.txt'
 
 # Open the file and turn it into one long string
