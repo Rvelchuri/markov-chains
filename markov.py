@@ -12,9 +12,11 @@ def open_and_read_file(file_path):
     """
     
     # your code goes here
-    words = open(file_path).read()
+    words = open(file_path)
+    word = words.read()
+    words.close()
     # print(words)
-    return words
+    return word
 
 
 def make_chains(text_string):
@@ -43,6 +45,7 @@ def make_chains(text_string):
     """
     words = text_string.split()
     chains = {}
+    words.append(None)
     for i in range(len(words) - 2):
         key = (words[i], words[i + 1])
         value = (words[i+2])
@@ -57,19 +60,20 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
     
-    words = []
+   
     starter_key = choice(list(chains.keys()))
-    random_word = choice((chains[starter_key]))
+    words = [starter_key[0], starter_key[1]]
+    random_word = choice(chains[starter_key])
     pprint(random_word)
     pprint(starter_key)
     # words = [starter_key[0],starter_key[1]]
     print(type(words))
     print(type(starter_key))
     
-    while random_word is not  None:
-        words.append(starter_key[0])
-        words.append(starter_key[1])
+    while random_word is not None:
+        starter_key = (starter_key[1], random_word)
         words.append(random_word)
+        random_word = choice(chains[starter_key])
 
         
     return ' '.join(words)
